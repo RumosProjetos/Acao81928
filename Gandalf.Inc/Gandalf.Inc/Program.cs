@@ -1,5 +1,6 @@
 ﻿using Gandalf.Inc.Modelo;
 using System;
+using System.Collections.Generic;
 
 namespace Gandalf.Inc
 {
@@ -37,6 +38,69 @@ namespace Gandalf.Inc
 
 
             Joao.SalvarParaTexto();
+
+
+            Produto computador = new Produto
+            {
+                Marca = "IBM",
+                Categoria = "PC",
+                Nome = "Lentium",
+                PrecoUnitario = 1000,
+                QuantidadeEmEstoque = 10
+            };
+
+            Produto smartphone = new Produto
+            {
+                Categoria = "Smartphone",
+                Marca = "Pineapple",
+                Nome = "EuFoneX",
+                PrecoUnitario = 1500,
+                QuantidadeEmEstoque = 5
+            };
+
+            Produto impressora = new Produto
+            {
+                Categoria = "Impressora",
+                Marca = "JP",
+                Nome = "Impressora Laser",
+                PrecoUnitario = 100,
+                QuantidadeEmEstoque = 7
+            };
+
+
+
+
+            Estoque EstoqueDaLoja = new Estoque
+            {
+                Produtos = new List<Produto>()
+            };
+
+            EstoqueDaLoja.Produtos.Add(computador);
+            EstoqueDaLoja.Produtos.Add(smartphone);
+            EstoqueDaLoja.Produtos.Add(impressora);
+
+
+            Venda carrinhoComprasMaria = new Venda();
+            carrinhoComprasMaria.Cliente = Maria;
+            carrinhoComprasMaria.Vendedor = Joao;
+            carrinhoComprasMaria.Items = new List<Item>();
+
+            Item item01 = new Item();
+            item01.Produto = smartphone;
+            item01.Quantidade = 2;
+
+            carrinhoComprasMaria.Items.Add(item01);
+
+            Item item02 = new Item();
+            item02.Produto = computador;
+            item02.Quantidade = 1;
+
+            carrinhoComprasMaria.Items.Add(item02);
+
+            carrinhoComprasMaria.PercentualDesconto = 0.10M;
+
+
+            Console.WriteLine("Valor pago pela Maria: " + carrinhoComprasMaria.ValorFinal);
 
         }
     }

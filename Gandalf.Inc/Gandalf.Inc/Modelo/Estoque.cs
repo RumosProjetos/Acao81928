@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Gandalf.Inc.Modelo
 {
-    internal class Estoque
+    public class Estoque
     {
+        public List<Produto> Produtos { get; set; }
     }
 }

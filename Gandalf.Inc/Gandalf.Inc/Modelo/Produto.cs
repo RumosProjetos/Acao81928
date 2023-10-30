@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Gandalf.Inc.Modelo
 {
-    internal class Produto
+    public class Produto
     {
+        public string Nome { get; set; }
+        public string Marca { get; set; }
+        public string Categoria { get; set; }
+        public decimal PrecoUnitario { get; set; }
+        public int QuantidadeEmEstoque { get; set; }
     }
 }
