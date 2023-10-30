@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gandalf.Inc.Modelo
 {
-    internal class Items
+    internal class Item
     {
     }
 }
