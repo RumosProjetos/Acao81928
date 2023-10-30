@@ -10,5 +10,6 @@ namespace Gandalf.Inc.Modelo
     {
         public int Quantidade { get; set; }
         public Produto Produto { get; set; }
+        public decimal PrecoItem => Quantidade * Produto.PrecoUnitario;
     }
 }

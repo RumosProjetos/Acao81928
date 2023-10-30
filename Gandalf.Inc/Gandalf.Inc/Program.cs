@@ -99,7 +99,7 @@ namespace Gandalf.Inc
 
             carrinhoComprasMaria.PercentualDesconto = 0.10M;
 
-
+            carrinhoComprasMaria.ImprimirRecibo();
             Console.WriteLine("Valor pago pela Maria: " + carrinhoComprasMaria.ValorFinal);
 
         }
