@@ -41,9 +41,7 @@ namespace Gandalf.Inc.Telas
         {
             IniciarListaUsuarios();
 
-            Console.WriteLine("==========================");
-            Console.WriteLine("=      Gandalf.Inc       =");
-            Console.WriteLine("==========================");
+
 
             string mensagem = "Bom dia";
             ContadorDeTentativasDeAcessos = 0;

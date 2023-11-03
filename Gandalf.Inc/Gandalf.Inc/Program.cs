@@ -9,12 +9,34 @@ namespace Gandalf.Inc
     {
         static void Main(string[] args)
         {
-            Login login = new Login();
+            Console.WriteLine("==========================");
+            Console.WriteLine("=      Gandalf.Inc       =");
+            Console.WriteLine("==========================");
+            string operacao = "";
 
-            Console.ReadLine();
+            while (operacao != "1" && operacao != "X")
+            {
+                Console.WriteLine("Pressione 1 para login");
+                Console.WriteLine("Pressione X para sair");
+                operacao = Console.ReadLine();
+            }
+
+            if(operacao ==  "1")
+            {
+                Login login = new Login();
+            }
+
+            if (operacao == "X")
+            {
+                Console.WriteLine("Obrigado por sua visita");
+                Console.ReadLine();
+                return;
+            }
+
+
+
 
             return;
-
 
 
 
@@ -114,7 +136,7 @@ namespace Gandalf.Inc
             carrinhoComprasMaria.ImprimirRecibo();
             Console.WriteLine("Valor pago pela Maria: " + carrinhoComprasMaria.ValorFinal);
 
-            
+
         }
     }
 }
