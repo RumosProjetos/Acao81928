@@ -98,6 +98,10 @@ namespace Gandalf.Inc.Telas
                     DadosCliente dadosCliente = new DadosCliente();
                 }
 
+                if (modulo.ToLower() == "p".ToLower())
+                {
+                    DadosProdutos dadosProduto = new DadosProdutos();
+                }
             }
             else
             {

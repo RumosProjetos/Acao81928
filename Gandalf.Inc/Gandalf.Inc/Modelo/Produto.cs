@@ -8,6 +8,7 @@ namespace Gandalf.Inc.Modelo
 {
     public class Produto
     {
+        public Guid Identificador { get; set; }
         public string Nome { get; set; }
         public string Marca { get; set; }
         public string Categoria { get; set; }
