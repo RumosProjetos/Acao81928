@@ -41,15 +41,39 @@ namespace Gandalf.Inc.Telas
                     AdicionarCliente();
                 }
 
+                if (operacao == "e")
+                {
+                    Console.WriteLine("Informe Identificador do Cliente");
+                    string temporario = Console.ReadLine();
+
+                    Console.WriteLine("Informe Novo Nome do Cliente");
+                    string nomeNovo = Console.ReadLine();
+
+                    Guid identificador = new Guid(temporario);
+                    EditarNomeCliente(identificador, nomeNovo);
+                }
+
                 if (operacao == "d")
                 {
-                    // 9b81879a - 87b4 - 45ae - 982c - 4c0287f76942
                     Console.WriteLine("Informe Identificador do Cliente");
                     string temporario = Console.ReadLine();
                     Guid identificador = new Guid(temporario);
                     ApagarCliente(identificador);
                 }
             } while (operacao != "x");
+
+
+            Console.Clear();
+            Console.WriteLine("O que você deseja fazer?");
+            Console.WriteLine("Digite 'c' para o Módulo de Clientes");
+            Console.WriteLine("Digite 'p' para o Módulo de Produtos");
+
+            string modulo = Console.ReadLine();
+            
+            if (modulo.ToLower() == "c".ToLower())
+            {
+                DadosCliente dadosCliente = new DadosCliente();
+            }
         }
 
 
@@ -69,6 +93,59 @@ namespace Gandalf.Inc.Telas
             SalvarDadosCliente();
         }
 
+
+        public void ApagarClienteLink(Guid identificador)
+        {
+            Cliente cliente = DatabaseDeClientes.FirstOrDefault(x => x.Identificador == identificador);
+            DatabaseDeClientes.Remove(cliente);
+            SalvarDadosCliente();
+        }
+
+
+        public void EditarNomeCliente(Guid identificador, string NomeNovo)
+        {
+            List<Cliente> local = new List<Cliente>();
+
+            foreach (var cliente in DatabaseDeClientes)
+            {
+                if (cliente.Identificador == identificador)
+                {
+                    cliente.Nome = NomeNovo;
+                }
+
+                local.Add(cliente);
+            }
+
+            DatabaseDeClientes = local;
+            SalvarDadosCliente();
+        }
+
+
+        public void EditarCliente(Guid identificador, Cliente dadosNovos)
+        {
+            List<Cliente> local = new List<Cliente>();
+
+            foreach (var cliente in DatabaseDeClientes)
+            {
+                if (cliente.Identificador != identificador)
+                {
+                    local.Add(cliente);
+                }
+
+                local.Add(dadosNovos);
+            }
+
+            DatabaseDeClientes = local;
+            SalvarDadosCliente();
+        }
+
+
+        public void EditarNomeClienteLink(Guid identificador, string NomeNovo)
+        {
+            Cliente cliente = DatabaseDeClientes.FirstOrDefault(x => x.Identificador == identificador);
+            cliente.Nome = NomeNovo;
+            SalvarDadosCliente();
+        }
 
         public void AdicionarCliente()
         {
