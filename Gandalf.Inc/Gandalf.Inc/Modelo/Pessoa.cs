@@ -9,6 +9,7 @@ namespace Gandalf.Inc.Modelo
 {
     public abstract class Pessoa
     {
+        public Guid Identificador { get; set; }  //UUID
         public string Nome { get; set; }
         public string NumeroIdentidadeFiscal { get; set; }
         public DateTime DataNascimento { get; set; }

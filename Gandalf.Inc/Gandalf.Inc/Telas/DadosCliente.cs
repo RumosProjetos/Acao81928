@@ -9,7 +9,7 @@ namespace Gandalf.Inc.Telas
 {
     public class DadosCliente
     {
-        public List<Cliente> Clientes { get; set; }
+        public List<Cliente> DatabaseDeClientes { get; set; }
         private const string CaminhoDados = "dadoscliente.json";
 
 
@@ -22,19 +22,53 @@ namespace Gandalf.Inc.Telas
             Console.WriteLine("=      Gandalf.Inc       =");
             Console.WriteLine("==========================");
             Console.WriteLine("Modulo Clientes");
-            Console.WriteLine("Escolha Operacao");
-            Console.WriteLine("'a' - Adicionar Novo Cliente");
-            Console.WriteLine("'e' - Editar dados de Cliente");
-            Console.WriteLine("'d' - Deletar dados Cliente");
-            Console.WriteLine("'x' - Voltar para tela Login");
 
-            string operacao = Console.ReadLine().ToLower();
-            if (operacao == "a")
+
+            string operacao = "";
+
+            do
             {
-                AdicionarCliente();
+                Console.WriteLine("Escolha Operacao");
+                Console.WriteLine("'a' - Adicionar Novo Cliente");
+                Console.WriteLine("'e' - Editar dados de Cliente");
+                Console.WriteLine("'d' - Deletar dados Cliente");
+                Console.WriteLine("'x' - Voltar para tela Login");
+
+                operacao = Console.ReadLine().ToLower();
+
+                if (operacao == "a")
+                {
+                    AdicionarCliente();
+                }
+
+                if (operacao == "d")
+                {
+                    // 9b81879a - 87b4 - 45ae - 982c - 4c0287f76942
+                    Console.WriteLine("Informe Identificador do Cliente");
+                    string temporario = Console.ReadLine();
+                    Guid identificador = new Guid(temporario);
+                    ApagarCliente(identificador);
+                }
+            } while (operacao != "x");
+        }
+
+
+        public void ApagarCliente(Guid identificador)
+        {
+            List<Cliente> local = new List<Cliente>();
+
+            foreach (var cliente in DatabaseDeClientes)
+            {
+                if (cliente.Identificador != identificador)
+                {
+                    local.Add(cliente);
+                }
             }
 
+            DatabaseDeClientes = local;
+            SalvarDadosCliente();
         }
+
 
         public void AdicionarCliente()
         {
@@ -42,6 +76,8 @@ namespace Gandalf.Inc.Telas
 
             Console.WriteLine("Informe os dados do cliente");
             cliente = new Cliente();
+
+            cliente.Identificador = Guid.NewGuid();
 
             Console.WriteLine("Nome do Cliente");
             cliente.Nome = Console.ReadLine();
@@ -80,14 +116,14 @@ namespace Gandalf.Inc.Telas
             Console.WriteLine("NumeroPorta");
             cliente.Morada.NumeroPorta = Console.ReadLine();
 
-            Clientes.Add(cliente);
+            DatabaseDeClientes.Add(cliente);
 
             SalvarDadosCliente();
         }
 
         public void SalvarDadosCliente()
         {
-            string ClienteEmJson = System.Text.Json.JsonSerializer.Serialize(Clientes);
+            string ClienteEmJson = System.Text.Json.JsonSerializer.Serialize(DatabaseDeClientes);
             System.IO.File.WriteAllText(CaminhoDados, ClienteEmJson);
         }
 
@@ -96,10 +132,17 @@ namespace Gandalf.Inc.Telas
         {
             if (System.IO.File.Exists(CaminhoDados))
             {
-                Clientes = new List<Cliente>();
-                string conteudo = System.IO.File.ReadAllText(CaminhoDados);
+                DatabaseDeClientes = new List<Cliente>();
 
-                Clientes = System.Text.Json.JsonSerializer.Deserialize<List<Cliente>>(conteudo);
+                try
+                {
+                    string conteudo = System.IO.File.ReadAllText(CaminhoDados);
+                    DatabaseDeClientes = System.Text.Json.JsonSerializer.Deserialize<List<Cliente>>(conteudo);
+                }
+                catch (Exception)
+                {
+                    ///TODO: Decidir o que fazer com as excessões ...
+                }
             }
         }
     }
