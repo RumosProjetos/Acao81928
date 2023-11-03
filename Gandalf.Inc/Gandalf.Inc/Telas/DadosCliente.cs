@@ -10,13 +10,13 @@ namespace Gandalf.Inc.Telas
     public class DadosCliente
     {
         public List<Cliente> Clientes { get; set; }
-
+        private const string CaminhoDados = "dadoscliente.json";
 
 
         public DadosCliente()
         {
             Console.Clear();
-            Clientes = new List<Cliente>();
+            ObterDadosDosClientes();
 
             Console.WriteLine("==========================");
             Console.WriteLine("=      Gandalf.Inc       =");
@@ -29,7 +29,7 @@ namespace Gandalf.Inc.Telas
             Console.WriteLine("'x' - Voltar para tela Login");
 
             string operacao = Console.ReadLine().ToLower();
-            if(operacao == "a")
+            if (operacao == "a")
             {
                 AdicionarCliente();
             }
@@ -81,6 +81,26 @@ namespace Gandalf.Inc.Telas
             cliente.Morada.NumeroPorta = Console.ReadLine();
 
             Clientes.Add(cliente);
+
+            SalvarDadosCliente();
+        }
+
+        public void SalvarDadosCliente()
+        {
+            string ClienteEmJson = System.Text.Json.JsonSerializer.Serialize(Clientes);
+            System.IO.File.WriteAllText(CaminhoDados, ClienteEmJson);
+        }
+
+
+        public void ObterDadosDosClientes()
+        {
+            if (System.IO.File.Exists(CaminhoDados))
+            {
+                Clientes = new List<Cliente>();
+                string conteudo = System.IO.File.ReadAllText(CaminhoDados);
+
+                Clientes = System.Text.Json.JsonSerializer.Deserialize<List<Cliente>>(conteudo);
+            }
         }
     }
 }
