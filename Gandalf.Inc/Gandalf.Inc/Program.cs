@@ -14,19 +14,19 @@ namespace Gandalf.Inc
             Console.WriteLine("==========================");
             string operacao = "";
 
-            while (operacao != "1" && operacao != "X")
+            while (operacao != "l" && operacao != "x")
             {
-                Console.WriteLine("Pressione 1 para login");
-                Console.WriteLine("Pressione X para sair");
-                operacao = Console.ReadLine();
+                Console.WriteLine("Pressione l para login");
+                Console.WriteLine("Pressione x para sair");
+                operacao = Console.ReadLine().ToLower();
             }
 
-            if(operacao ==  "1")
+            if(operacao ==  "l")
             {
                 Login login = new Login();
             }
 
-            if (operacao == "X")
+            if (operacao == "x")
             {
                 Console.WriteLine("Obrigado por sua visita");
                 Console.ReadLine();

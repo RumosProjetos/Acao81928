@@ -39,6 +39,11 @@ namespace Gandalf.Inc.Telas
 
         public Login()
         {
+            Console.Clear();
+            Console.WriteLine("==========================");
+            Console.WriteLine("=      Gandalf.Inc       =");
+            Console.WriteLine("==========================");
+
             IniciarListaUsuarios();
 
 
@@ -83,15 +88,14 @@ namespace Gandalf.Inc.Telas
             if (ValidarUsuarioSenha(Usuario, Senha))
             {
                 Console.WriteLine("O que você deseja fazer?");
-                Console.WriteLine("Digite 'Cliente' para o Módulo de Clientes");
-                Console.WriteLine("Digite 'Produto' para o Módulo de Produtos");
+                Console.WriteLine("Digite 'c' para o Módulo de Clientes");
+                Console.WriteLine("Digite 'p' para o Módulo de Produtos");
 
                 string modulo = Console.ReadLine();
                 //TODO: Adicionar loop de operacoes
-                if (modulo == "cliente")
+                if (modulo.ToLower() == "c".ToLower())
                 {
                     DadosCliente dadosCliente = new DadosCliente();
-
                 }
 
             }

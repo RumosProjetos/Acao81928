@@ -15,17 +15,21 @@ namespace Gandalf.Inc.Telas
 
         public DadosCliente()
         {
+            Console.Clear();
             Clientes = new List<Cliente>();
 
+            Console.WriteLine("==========================");
+            Console.WriteLine("=      Gandalf.Inc       =");
+            Console.WriteLine("==========================");
             Console.WriteLine("Modulo Clientes");
             Console.WriteLine("Escolha Operacao");
-            Console.WriteLine("'Adicionar' - Adicionar Novo Cliente");
-            Console.WriteLine("'Alterar' - Alterar dados de Cliente");
-            Console.WriteLine("'Remover' - Apagar Cliente");
-            Console.WriteLine("'Voltar' - Voltar para tela Login");
+            Console.WriteLine("'a' - Adicionar Novo Cliente");
+            Console.WriteLine("'e' - Editar dados de Cliente");
+            Console.WriteLine("'d' - Deletar dados Cliente");
+            Console.WriteLine("'x' - Voltar para tela Login");
 
-            string operacao = Console.ReadLine();
-            if(operacao == "Adicionar")
+            string operacao = Console.ReadLine().ToLower();
+            if(operacao == "a")
             {
                 AdicionarCliente();
             }
