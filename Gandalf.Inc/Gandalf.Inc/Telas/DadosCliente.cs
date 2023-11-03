@@ -9,8 +9,33 @@ namespace Gandalf.Inc.Telas
 {
     public class DadosCliente
     {
-        public Cliente cliente { get; set; }
-        public DadosCliente() {
+        public List<Cliente> Clientes { get; set; }
+
+
+
+        public DadosCliente()
+        {
+            Clientes = new List<Cliente>();
+
+            Console.WriteLine("Modulo Clientes");
+            Console.WriteLine("Escolha Operacao");
+            Console.WriteLine("'Adicionar' - Adicionar Novo Cliente");
+            Console.WriteLine("'Alterar' - Alterar dados de Cliente");
+            Console.WriteLine("'Remover' - Apagar Cliente");
+            Console.WriteLine("'Voltar' - Voltar para tela Login");
+
+            string operacao = Console.ReadLine();
+            if(operacao == "Adicionar")
+            {
+                AdicionarCliente();
+            }
+
+        }
+
+        public void AdicionarCliente()
+        {
+            Cliente cliente = new Cliente();
+
             Console.WriteLine("Informe os dados do cliente");
             cliente = new Cliente();
 
@@ -21,7 +46,7 @@ namespace Gandalf.Inc.Telas
             cliente.NumeroIdentidadeFiscal = Console.ReadLine();
 
             Console.WriteLine("Ano de Nascimento");
-            int anoNascimento =  int.Parse(Console.ReadLine());
+            int anoNascimento = int.Parse(Console.ReadLine());
 
             Console.WriteLine("Mês de Nascimento");
             int mesNascimento = int.Parse(Console.ReadLine());
@@ -50,6 +75,8 @@ namespace Gandalf.Inc.Telas
 
             Console.WriteLine("NumeroPorta");
             cliente.Morada.NumeroPorta = Console.ReadLine();
+
+            Clientes.Add(cliente);
         }
     }
 }

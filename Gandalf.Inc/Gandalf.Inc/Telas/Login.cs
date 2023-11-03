@@ -42,7 +42,6 @@ namespace Gandalf.Inc.Telas
             IniciarListaUsuarios();
 
 
-
             string mensagem = "Bom dia";
             ContadorDeTentativasDeAcessos = 0;
 
