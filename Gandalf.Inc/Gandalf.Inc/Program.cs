@@ -1,4 +1,5 @@
 ﻿using Gandalf.Inc.Modelo;
+using Gandalf.Inc.Telas;
 using System;
 using System.Collections.Generic;
 
@@ -8,6 +9,15 @@ namespace Gandalf.Inc
     {
         static void Main(string[] args)
         {
+            Login login = new Login();
+
+            return;
+
+
+
+
+
+
             Console.WriteLine("Gandalf.Inc");
 
             Cliente Maria = new Cliente();
