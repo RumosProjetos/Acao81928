@@ -11,6 +11,8 @@ namespace Gandalf.Inc
         {
             Login login = new Login();
 
+            Console.ReadLine();
+
             return;
 
 
@@ -112,6 +114,7 @@ namespace Gandalf.Inc
             carrinhoComprasMaria.ImprimirRecibo();
             Console.WriteLine("Valor pago pela Maria: " + carrinhoComprasMaria.ValorFinal);
 
+            
         }
     }
 }
