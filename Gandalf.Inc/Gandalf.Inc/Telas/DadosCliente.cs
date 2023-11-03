@@ -15,8 +15,10 @@ namespace Gandalf.Inc.Telas
 
         public DadosCliente()
         {
+            DatabaseDeClientes = new List<Cliente>();
             Console.Clear();
             ObterDadosDosClientes();
+
 
             Console.WriteLine("==========================");
             Console.WriteLine("=      Gandalf.Inc       =");
