@@ -83,7 +83,18 @@ namespace Gandalf.Inc.Telas
 
             if (ValidarUsuarioSenha(Usuario, Senha))
             {
-                //avançar
+                Console.WriteLine("O que você deseja fazer?");
+                Console.WriteLine("Digite 'Cliente' para o Módulo de Clientes");
+                Console.WriteLine("Digite 'Produto' para o Módulo de Produtos");
+
+                string modulo = Console.ReadLine();
+                //TODO: Adicionar loop de operacoes
+                if (modulo == "cliente")
+                {
+                    DadosCliente dadosCliente = new DadosCliente();
+
+                }
+
             }
             else
             {
