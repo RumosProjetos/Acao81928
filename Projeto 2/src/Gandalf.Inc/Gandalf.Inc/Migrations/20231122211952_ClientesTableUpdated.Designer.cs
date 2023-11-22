@@ -3,14 +3,16 @@ using System;
 using Gandalf.Inc.Modelo;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Gandalf.Inc.Migrations
 {
     [DbContext(typeof(PosContext))]
-    partial class PosContextModelSnapshot : ModelSnapshot
+    [Migration("20231122211952_ClientesTableUpdated")]
+    partial class ClientesTableUpdated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,11 +87,9 @@ namespace Gandalf.Inc.Migrations
                     b.Property<DateTime>("DataCriacao")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("LojaId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("TipoPagamentofldPaymentTypeID")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("TipoPagamento")
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
 
                     b.Property<decimal>("ValorPago")
                         .HasColumnType("TEXT");
@@ -99,47 +99,9 @@ namespace Gandalf.Inc.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LojaId");
-
-                    b.HasIndex("TipoPagamentofldPaymentTypeID");
-
                     b.HasIndex("VendaId");
 
                     b.ToTable("tblPagamentos");
-                });
-
-            modelBuilder.Entity("Gandalf.Inc.Modelo.PontoDeVenda", b =>
-                {
-                    b.Property<int>("fldPosID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("fldStoreId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("fldStoreLocation")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("fldPosID");
-
-                    b.HasIndex("fldStoreId");
-
-                    b.ToTable("tbPos");
-                });
-
-            modelBuilder.Entity("Gandalf.Inc.Modelo.TipoPagamento", b =>
-                {
-                    b.Property<int>("fldPaymentTypeID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("fldPaymentType")
-                        .HasMaxLength(50)
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("fldPaymentTypeID");
-
-                    b.ToTable("tblPaymentType");
                 });
 
             modelBuilder.Entity("Gandalf.Inc.Modelo.Usuario", b =>
@@ -201,9 +163,6 @@ namespace Gandalf.Inc.Migrations
                     b.Property<DateTime>("DataModificacao")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("LojaId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("NumeroFatura")
                         .HasColumnType("TEXT");
 
@@ -213,19 +172,12 @@ namespace Gandalf.Inc.Migrations
                     b.Property<bool>("Pago")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("PontoDeVendafldPosID")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int?>("UsuarioId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ClienteId");
-
-                    b.HasIndex("LojaId");
-
-                    b.HasIndex("PontoDeVendafldPosID");
 
                     b.HasIndex("UsuarioId");
 
@@ -234,32 +186,11 @@ namespace Gandalf.Inc.Migrations
 
             modelBuilder.Entity("Gandalf.Inc.Modelo.Pagamento", b =>
                 {
-                    b.HasOne("Gandalf.Inc.Modelo.Loja", "Loja")
-                        .WithMany()
-                        .HasForeignKey("LojaId");
-
-                    b.HasOne("Gandalf.Inc.Modelo.TipoPagamento", "TipoPagamento")
-                        .WithMany()
-                        .HasForeignKey("TipoPagamentofldPaymentTypeID");
-
                     b.HasOne("Gandalf.Inc.Modelo.Venda", "Venda")
                         .WithMany()
                         .HasForeignKey("VendaId");
 
-                    b.Navigation("Loja");
-
-                    b.Navigation("TipoPagamento");
-
                     b.Navigation("Venda");
-                });
-
-            modelBuilder.Entity("Gandalf.Inc.Modelo.PontoDeVenda", b =>
-                {
-                    b.HasOne("Gandalf.Inc.Modelo.Loja", "fldStore")
-                        .WithMany()
-                        .HasForeignKey("fldStoreId");
-
-                    b.Navigation("fldStore");
                 });
 
             modelBuilder.Entity("Gandalf.Inc.Modelo.Venda", b =>
@@ -268,23 +199,11 @@ namespace Gandalf.Inc.Migrations
                         .WithMany("Vendas")
                         .HasForeignKey("ClienteId");
 
-                    b.HasOne("Gandalf.Inc.Modelo.Loja", "Loja")
-                        .WithMany()
-                        .HasForeignKey("LojaId");
-
-                    b.HasOne("Gandalf.Inc.Modelo.PontoDeVenda", "PontoDeVenda")
-                        .WithMany()
-                        .HasForeignKey("PontoDeVendafldPosID");
-
                     b.HasOne("Gandalf.Inc.Modelo.Usuario", "Usuario")
                         .WithMany("Vendas")
                         .HasForeignKey("UsuarioId");
 
                     b.Navigation("Cliente");
-
-                    b.Navigation("Loja");
-
-                    b.Navigation("PontoDeVenda");
 
                     b.Navigation("Usuario");
                 });

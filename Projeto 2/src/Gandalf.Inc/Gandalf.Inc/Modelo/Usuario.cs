@@ -45,5 +45,7 @@ namespace Gandalf.Inc.Modelo
         [MaxLength(9)]
         [Phone]        
         public string Telefone { get; set; }
+
+        public virtual ICollection<Venda> Vendas { get; set; }
     }
 }

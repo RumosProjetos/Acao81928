@@ -7,14 +7,16 @@ using System.Threading.Tasks;
 
 namespace Gandalf.Inc.Modelo
 {
-    [Table(name: "tblLojas")]
-    public class Loja
+    [Table(name: "tblSalesDetails")]
+    public class DetalheDaVenda
     {
+        [Column(name: "fldSalesDetailID")]
         public int Id { get; set; }
-        public string Nome { get; set; }
-        public string EnderecoLoja { get; set; }
-        public bool Ativo { get; set; }
-        public DateTime DataModificacao { get; set; }
+
+        public virtual Venda Venda { get; set; }
+        public int SalesId { get; set; }
+        public virtual Produto Produto { get; set; }
+
         public DateTime DataCriacao { get; set; }
     }
 }

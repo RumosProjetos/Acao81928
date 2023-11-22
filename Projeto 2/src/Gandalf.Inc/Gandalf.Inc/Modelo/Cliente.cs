@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Gandalf.Inc.Modelo
 {
+    [Table(name: "tblClientes")]
     public class Cliente : Pessoa
     {
         [Key]
@@ -35,6 +36,8 @@ namespace Gandalf.Inc.Modelo
         [Required]
         [Display(Name = "NIF")]
         public string NumeroIdentificacaoFiscal { get; set; }
+
+        public virtual ICollection<Venda> Vendas { get; set; }
 
     }
 }

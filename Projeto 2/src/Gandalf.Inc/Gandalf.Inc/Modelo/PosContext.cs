@@ -23,5 +23,7 @@ namespace Gandalf.Inc.Modelo
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Loja> Lojas { get; set; }
+        public DbSet<Pagamento> Pagamentos { get; set; }
+        public DbSet<Venda> Vendas { get; set; }
     }
 }
